@@ -1,0 +1,166 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Préparer vos fichiers | Pyrénées Dorure Découpe</title>
+<meta name="description" content="Guide de préparation des fichiers pour la dorure à chaud, le gaufrage, la découpe, le pelliculage et le vernis sélectif : formats, calques, finesse de trait, supports.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;600&family=Mulish:wght@300;400;600&display=swap">
+<style>
+/* Guide technique : une colonne de lecture, repères numérotés car c'est une procédure. */
+:root{color-scheme:dark;--fond:#26272a;--surface:#303236;--texte:#f1efea;--doux:#b4b5b9;--filet:#44464b;--or:#e6aa00;
+  --f-titre:"Josefin Sans","Futura","Century Gothic",sans-serif;--f-texte:"Mulish","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--f-texte);font-weight:300;font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--or)}
+.cadre{max-width:860px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header{border-bottom:1px solid var(--filet)}
+header .cadre{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;max-width:1100px}
+header img{height:46px;width:auto;display:block}
+header nav{display:flex;gap:16px;font-size:.95rem}
+header nav a{color:var(--texte);text-decoration:none}
+.bouton{display:inline-block;background:var(--or);color:#16130f;text-decoration:none;font-weight:600;padding:11px 18px}
+h1,h2,h3{font-family:var(--f-titre);font-weight:300;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:56px}
+.chapo{font-size:1.18rem;color:var(--doux);margin:18px 0 0;max-width:60ch}
+.resume{margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.resume div{background:var(--surface);padding:16px}
+.resume strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.4rem;color:var(--or)}
+.resume span{font-size:.92rem;color:var(--doux)}
+ol.regles{list-style:none;counter-reset:r;margin:48px 0 0;padding:0}
+ol.regles > li{counter-increment:r;border-top:1px solid var(--filet);padding:32px 0 32px 64px;position:relative}
+ol.regles > li::before{content:counter(r);position:absolute;left:0;top:28px;font-family:var(--f-titre);font-size:2.4rem;color:var(--or);line-height:1}
+ol.regles h2{font-size:1.7rem}
+ol.regles p{margin:12px 0 0;max-width:62ch}
+ol.regles ul{margin:12px 0 0;padding-left:1.1em}
+ol.regles li li{margin-top:6px}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.98rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--filet)}
+th{font-weight:600;color:var(--doux);font-size:.88rem}
+td{font-variant-numeric:tabular-nums}
+.tableau{overflow-x:auto}
+.coche{margin-top:24px;background:var(--surface);padding:24px 28px}
+.coche h2{font-size:1.6rem}
+.coche ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.coche li{padding-left:30px;position:relative}
+.coche li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border:2px solid var(--or)}
+.fin{margin:48px 0 64px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.fin p{margin:0;color:var(--doux);flex-basis:100%}
+footer{border-top:1px solid var(--filet);font-size:.9rem;color:var(--doux)}
+footer .cadre{padding-block:24px;max-width:1100px}
+@media (max-width:640px){.resume{grid-template-columns:1fr}ol.regles > li{padding-left:48px}header nav a:not(.bouton){display:none}}
+/* Impression et PDF : fond blanc, encre noire */
+@media print{
+  :root{--fond:#fff;--surface:#f4f1ea;--texte:#1a1a1a;--doux:#555;--filet:#d6d2c8;--or:#9a6b00;color-scheme:light}
+  header nav,.fin .bouton{display:none}
+  h1{margin-top:20px}
+  ol.regles > li{break-inside:avoid;padding-block:20px}
+  .coche{break-inside:avoid}
+  body{font-size:10.5pt}
+  @page{margin:16mm 14mm}
+}
+</style>
+</head>
+<body>
+<header><div class="cadre">
+  <a href="index.html" aria-label="Pyrénées Dorure Découpe, accueil"><img src="logo.svg" alt="Pyrénées Dorure Découpe" width="141" height="85"></a>
+  <nav><a href="index.html#finitions">Savoir-faire</a><a href="index.html#faq">Questions fréquentes</a><a class="bouton" href="index.html#demande">Demander un devis</a></nav>
+</div></header>
+
+<main class="cadre">
+  <h1>Préparer vos fichiers pour l'ennoblissement</h1>
+  <p class="chapo">Un fichier bien préparé, c'est un calage plus rapide, moins de gâche et un rendu fidèle à ce que vous avez imaginé. Voici ce dont nous avons besoin pour la dorure, le gaufrage, la découpe, le pelliculage et le vernis sélectif.</p>
+
+  <div class="resume">
+    <div><strong>PDF vectoriel</strong><span>un calque par finition</span></div>
+    <div><strong>0,3 / 0,5 mm</strong><span>trait plein / trait en réserve, minimum</span></div>
+    <div><strong>0,1 à 1,8 mm</strong><span>papier et carton compact</span></div>
+  </div>
+
+  <ol class="regles">
+    <li>
+      <h2>Un fichier vectoriel à l'échelle</h2>
+      <p>Envoyez un PDF vectoriel (ou un fichier Illustrator), à l'échelle 1:1.</p>
+      <ul>
+        <li>Textes vectorisés, ou polices incorporées.</li>
+        <li>Positionnement identique à celui de votre feuille imprimée, avec les mêmes repères, pour que la finition tombe exactement au bon endroit.</li>
+        <li>Joignez un aperçu de la pièce imprimée : il nous aide à vérifier le repérage.</li>
+      </ul>
+    </li>
+    <li>
+      <h2>Un calque par finition</h2>
+      <p>Chaque finition sur son propre calque, nommé clairement : DORURE, GAUFRAGE, VERNIS, DÉCOUPE.</p>
+      <ul>
+        <li>Zones à ennoblir en aplat 100 % d'une seule couleur, de préférence un ton direct portant le nom de la finition.</li>
+        <li>Pas de dégradé, pas de trame, pas de transparence dans ces calques.</li>
+        <li>Si vous combinez plusieurs finitions (dorure sur gaufrage, par exemple), gardez des calques séparés et parfaitement superposés.</li>
+      </ul>
+    </li>
+    <li>
+      <h2>Finesse minimale des traits</h2>
+      <p>En dorure à chaud, respectez ces minimums pour un rendu net :</p>
+      <ul>
+        <li><b>0,3 mm</b> pour un trait plein (le film est posé sur le trait) ;</li>
+        <li><b>0,5 mm</b> pour un trait en réserve (le trait est laissé vide dans un aplat doré).</li>
+      </ul>
+      <p>En dessous, le film risque de boucher ou de ne pas accrocher. En cas de doute, nous pouvons faire un essai.</p>
+    </li>
+    <li>
+      <h2>Découpe : un tracé propre</h2>
+      <ul>
+        <li>Le gabarit de découpe en trait vectoriel fin, dans une couleur dédiée, sur son propre calque.</li>
+        <li>Les rainages (plis) distingués des coupes, par exemple en pointillés.</li>
+        <li>Un tracé fermé, sans doublon ni chevauchement.</li>
+      </ul>
+    </li>
+    <li>
+      <h2>Supports et formats</h2>
+      <p>Papier et carton compact, de 0,1 à 1,8 mm d'épaisseur. Formats maximum de feuille :</p>
+      <div class="tableau"><table>
+        <thead><tr><th>Finition</th><th>Format maximum</th></tr></thead>
+        <tbody>
+          <tr><td>Dorure à chaud</td><td>75 × 105 cm</td></tr>
+          <tr><td>Gaufrage</td><td>75 × 105 cm</td></tr>
+          <tr><td>Pelliculage</td><td>75 × 105 cm</td></tr>
+          <tr><td>Vernis sélectif</td><td>72 × 102 cm</td></tr>
+          <tr><td>Découpe</td><td>64 × 90 cm</td></tr>
+        </tbody>
+      </table></div>
+    </li>
+    <li>
+      <h2>Films de dorure</h2>
+      <p>Plus de 50 teintes en stock : or, argent, cuivre, couleurs, effets mats, brillants ou holographiques. Chaque film existe en plusieurs qualités de colle, choisies selon votre support (papier couché, non couché, pelliculé, vernis…). Indiquez-nous le support et la teinte souhaitée : nous vous conseillons le bon film.</p>
+    </li>
+    <li>
+      <h2>Envoi de vos feuilles et délais</h2>
+      <ul>
+        <li>Prévoyez quelques feuilles supplémentaires pour le calage : nous vous indiquons la quantité au devis.</li>
+        <li>Délai moyen : 1 à 2 semaines, transport compris.</li>
+        <li>Pour les dossiers techniques (nouveau support, combinaison de finitions, motif très fin), nous proposons un essai avant la série.</li>
+      </ul>
+    </li>
+  </ol>
+
+  <div class="coche">
+    <h2>Avant d'envoyer, vérifiez</h2>
+    <ul>
+      <li>PDF vectoriel à l'échelle 1:1, textes vectorisés</li>
+      <li>Un calque nommé par finition, en aplat 100 %</li>
+      <li>Traits d'au moins 0,3 mm (plein) et 0,5 mm (réserve)</li>
+      <li>Repères identiques à ceux de la feuille imprimée</li>
+      <li>Gabarit de découpe fermé, rainages distingués</li>
+      <li>Support, épaisseur, format et quantité indiqués</li>
+    </ul>
+  </div>
+
+  <div class="fin">
+    <p>Une question sur votre fichier ? Appelez-nous au 05 59 14 92 35 ou écrivez à contact@pyrenees-dorure.com.</p>
+    <a class="bouton" href="index.html#demande">Demander un devis</a>
+    <a class="bouton" href="guide-preparation-fichiers-pyrenees-dorure.pdf" style="background:transparent;color:var(--texte);border:1px solid var(--filet)">Télécharger le guide en PDF</a>
+  </div>
+</main>
+<footer><div class="cadre">Pyrénées Dorure Découpe · ZI Berlanne, 13 rue des Landes, 64160 Morlaas · membre du groupe BK'ART</div></footer>
+</body>
+</html>

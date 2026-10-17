@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta name="robots" content="noindex,nofollow">
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+</head>
+<body>
+<title>Dorure à chaud pour imprimeurs | Pyrénées Dorure Découpe</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<meta name="description" content="Dorure à chaud à plat ou galbée sur papier et carton compact jusqu'au format 75 × 105 cm. Plus de 50 teintes de films en stock. Sous-traitance pour imprimeurs, atelier à Morlaas près de Pau.">
+<script>document.documentElement.dataset.v="2"</script>
+<script>try{history.scrollRestoration="manual"}catch(e){}addEventListener("load",function(){if(!location.hash){scrollTo(0,0)}if(window.ScrollTrigger){setTimeout(function(){ScrollTrigger.refresh()},50)}});</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Marcellus&family=Jost:wght@300;400;500&family=Josefin+Sans:wght@300;400;600&family=Mulish:wght@300;400;600&family=Archivo:wdth,wght@100..125,300..700&display=swap">
+<style>
+/* Base commune : ouverture photo plein cadre avec texte par-dessus (ex-A), finitions en vignettes (ex-B).
+   1 Gravure  : gris chaud, Marcellus + Jost, photos légèrement harmonisées.
+   2 Graphite : anthracite, Josefin Sans + Mulish, photos moyennement harmonisées.
+   3 Atelier  : brun nuit, Archivo large, photos fortement harmonisées. */
+:root{
+  color-scheme:dark;
+  --fond:#24221f; --surface:#2e2b27; --texte:#efe9dd; --doux:#b0a89b; --filet:#403b35; --or:#e6aa00; --voile:36,34,31;
+  --f-titre:"Marcellus", "Trajan Pro", Georgia, serif; --f-texte:"Jost", "Futura", "Helvetica Neue", Arial, sans-serif;
+  --t-poids:400; --t-largeur:100;
+  --g-g:max(20px, env(safe-area-inset-left, 0px)); --g-d:max(20px, env(safe-area-inset-right, 0px));
+}
+:root[data-v="2"]{--fond:#26272a;--surface:#303236;--texte:#f1efea;--doux:#adaeb2;--filet:#44464b;--or:#e6aa00;--voile:38,39,42;
+  --f-titre:"Josefin Sans", "Futura", "Century Gothic", sans-serif;--f-texte:"Mulish", "Helvetica Neue", Arial, sans-serif;--t-poids:300}
+:root[data-v="3"]{--fond:#1f1c18;--surface:#2a2621;--texte:#f2eadb;--doux:#a79e90;--filet:#3a352e;--or:#d9a92a;--voile:31,28,24;
+  --f-titre:"Archivo", "Helvetica Neue", Arial, sans-serif;--f-texte:"Archivo", "Helvetica Neue", Arial, sans-serif;--t-poids:500;--t-largeur:125}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--f-texte);font-weight:300;font-size:1.0625rem;line-height:1.6;-webkit-font-smoothing:antialiased}
+img{max-width:100%;height:auto;display:block}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+h1,h2,h3{font-family:var(--f-titre);font-weight:var(--t-poids);font-variation-settings:"wdth" var(--t-largeur);line-height:1.1;margin:0;text-wrap:balance}
+p{margin:0}
+.cadre{max-width:1240px;margin-inline:auto;padding-left:var(--g-g);padding-right:var(--g-d)}
+.bouton{display:inline-block;background:var(--or);color:#1a1712;text-decoration:none;font-weight:500;font-size:.95rem;padding:13px 22px;border:1px solid var(--or);cursor:pointer;font-family:var(--f-texte)}
+.bouton:hover{background:transparent;color:var(--or)}
+.bouton.ligne{background:transparent;color:var(--texte);border-color:rgba(255,255,255,.55)}
+.bouton.ligne:hover{border-color:var(--or);color:var(--or)}
+
+/* Sélecteur des propositions (hors maquette) */
+.choix{background:#0f0f0f;border-bottom:1px solid #333;font-family:"Jost",Arial,sans-serif;position:relative;z-index:7}
+.choix .cadre{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding-block:8px}
+.choix span{color:#aaa;font-size:.85rem;margin-right:4px}
+.choix button{font:500 .88rem/1 "Jost",Arial,sans-serif;background:transparent;color:#eee;border:1px solid #555;padding:9px 13px;cursor:pointer}
+.choix button[aria-pressed="true"]{background:#e6aa00;border-color:#e6aa00;color:#111}
+
+[data-split] .m{display:inline-block;white-space:nowrap}
+[data-split] .l{display:inline-block}
+/* Curseur : rond doré */
+#curseur{position:fixed;left:0;top:0;width:16px;height:16px;margin:-8px 0 0 -8px;border-radius:50%;background:#e6aa00;pointer-events:none;z-index:50;opacity:0;transition:width .25s,height .25s,margin .25s,background-color .25s,opacity .3s;mix-blend-mode:normal}
+#curseur.survol{width:46px;height:46px;margin:-23px 0 0 -23px;background:rgba(230,170,0,.28);border:1px solid #e6aa00}
+@media (pointer:fine){html.curseur-or,html.curseur-or *{cursor:none!important}}
+
+/* En-tête : transparent sur la photo, opaque au défilement */
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--fond)}
+.entete{position:sticky;top:env(safe-area-inset-top,0px);z-index:11;transition:background .3s,border-color .3s;border-bottom:1px solid transparent;margin-bottom:-79px}
+.entete.plein{background:rgba(var(--voile),.96);backdrop-filter:blur(6px);border-bottom-color:var(--filet)}
+.entete .cadre{display:flex;align-items:center;justify-content:space-between;gap:24px;padding-block:14px;height:78px}
+.logo img{height:50px;width:auto}
+.nav{display:flex;align-items:center;gap:30px;font-size:.95rem;font-weight:400}
+.nav a{text-decoration:none}
+.nav a:not(.bouton):hover{color:var(--or)}
+.nav .bouton{padding:10px 18px}
+
+/* Ouverture */
+.ouverture{position:relative;min-height:min(88vh,780px);display:flex;align-items:flex-end;overflow:hidden}
+.ouverture{background:var(--fond)}
+.ouverture > img{position:absolute;top:0;bottom:0;right:0;left:30%;width:70%;height:100%;object-fit:cover;object-position:var(--pos,60% 35%)}
+.ouverture::before{content:"";position:absolute;inset:0;background:
+  linear-gradient(90deg,rgba(var(--voile),1) 0%,rgba(var(--voile),1) 32%,rgba(var(--voile),.75) 42%,rgba(var(--voile),.2) 58%,rgba(var(--voile),0) 70%),
+  linear-gradient(0deg,rgba(var(--voile),.9) 0%,rgba(var(--voile),0) 30%),
+  linear-gradient(180deg,rgba(var(--voile),.85) 0%,rgba(var(--voile),0) 20%)}
+.ouverture > img{z-index:0}
+.ouverture::before{z-index:1}
+.ouverture .cadre{position:relative;z-index:2;width:100%;padding-block:150px 64px}
+.ouverture .bloc{max-width:580px}
+.ouverture h1{font-size:clamp(2.5rem,5.6vw,4.8rem);text-shadow:0 2px 24px rgba(0,0,0,.35)}
+/* Reflet doré qui balaie le titre une fois au chargement */
+.reflet{background:linear-gradient(105deg,var(--texte) 0%,var(--texte) 42%,#ffe08a 48%,var(--or) 50%,#ffe08a 52%,var(--texte) 58%,var(--texte) 100%);background-size:300% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent;animation:reflet 2.4s .6s ease-in-out 1 both}
+@keyframes reflet{from{background-position:100% 0}to{background-position:0 0}}
+.ouverture .chapo{margin-top:22px;font-size:1.15rem;line-height:1.55;color:var(--texte);text-shadow:0 1px 12px rgba(0,0,0,.45)}
+.ouverture .actions{margin-top:32px;display:flex;flex-wrap:wrap;gap:12px}
+.reperes{position:relative;max-width:580px;margin-top:44px;display:flex;flex-wrap:wrap;gap:12px 40px;padding-top:22px;border-top:1px solid rgba(255,255,255,.18)}
+.reperes div{display:flex;flex-direction:column}
+.reperes strong{font-family:var(--f-titre);font-weight:var(--t-poids);font-variation-settings:"wdth" var(--t-largeur);font-size:1.3rem;color:var(--or)}
+.reperes span{font-size:.88rem;color:var(--doux)}
+
+/* Sections */
+.section{padding-block:96px}
+.tete{display:grid;grid-template-columns:5fr 7fr;gap:56px;margin-bottom:48px;align-items:end}
+.tete h2{font-size:clamp(2rem,3.6vw,3rem)}
+.tete p{max-width:36em;color:var(--doux)}
+
+/* Finitions en vignettes, avec loupe au survol */
+.finitions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
+.finition a{display:flex;flex-direction:column;gap:8px;text-decoration:none}
+.loupe{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--surface)}
+.loupe img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
+.loupe:hover img{transform:scale(1.9)}
+.finition h3{font-size:1.45rem;margin-top:8px}
+.finition a:hover h3{color:var(--or)}
+.finition p{font-size:.95rem;color:var(--doux)}
+.finition .format{font-size:.88rem;color:var(--doux);font-variant-numeric:tabular-nums}
+.finition .format b{font-weight:500;color:var(--texte)}
+.indice{margin-top:18px;font-size:.88rem;color:var(--doux)}
+
+/* Domaines d'activité */
+.domaines{background:var(--surface)}
+.univers{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.univers figure{margin:0;position:relative}
+.univers .cadre-img{overflow:hidden;aspect-ratio:4/3}
+.univers img{width:100%;height:100%;object-fit:cover;transition:transform .8s ease}
+.univers li:hover img{transform:scale(1.06)}
+.univers figcaption{position:absolute;left:0;right:0;bottom:0;padding:44px 18px 16px;background:linear-gradient(0deg,rgba(var(--voile),.92),rgba(var(--voile),0));font-family:var(--f-titre);font-weight:var(--t-poids);font-variation-settings:"wdth" var(--t-largeur);font-size:clamp(1.15rem,1.9vw,1.6rem);color:var(--texte)}
+@media (max-width:760px){.univers{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.univers figcaption{padding:30px 10px 10px}}
+/* Références avec agrandissement */
+.references{background:var(--surface)}
+.mosaique{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.mosaique figure{margin:0;display:flex;flex-direction:column;gap:10px;min-width:0}
+.mosaique button{all:unset;cursor:zoom-in;display:block}
+.mosaique button:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.mosaique img{width:100%;object-fit:cover}
+.m1{grid-column:1/7;grid-row:1/3}.m1 img{aspect-ratio:1/1}
+.m2,.m3{grid-column:7/10}.m4,.m5{grid-column:10/13}
+.m2 img,.m3 img,.m4 img,.m5 img{aspect-ratio:1/1}
+.mosaique figcaption{font-size:.88rem;color:var(--doux)}
+.mosaique figcaption b{font-weight:500;color:var(--texte)}
+.marques{margin-top:56px;display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:baseline}
+.marques > p{color:var(--doux)}
+.marques ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:6px 28px;font-family:var(--f-titre);font-weight:var(--t-poids);font-variation-settings:"wdth" var(--t-largeur);font-size:clamp(1.2rem,2vw,1.55rem)}
+dialog{border:0;padding:0;background:transparent;max-width:min(92vw,1100px);max-height:92vh}
+dialog::backdrop{background:rgba(10,9,8,.88)}
+dialog img{max-height:82vh;width:auto;margin-inline:auto}
+dialog p{color:#eee;text-align:center;margin-top:12px;font-size:.95rem}
+dialog .fermer{position:absolute;top:8px;right:8px;background:rgba(0,0,0,.6);color:#fff;border:1px solid #777;padding:8px 12px;cursor:pointer;font:500 .9rem "Jost",Arial,sans-serif}
+
+/* Atelier */
+.atelier .cadre{display:grid;grid-template-columns:7fr 5fr;gap:56px;align-items:center}
+.atelier img{width:100%;aspect-ratio:3/2;object-fit:cover}
+.atelier h2{font-size:clamp(2rem,3.6vw,3rem)}
+.atelier p{margin-top:22px;max-width:32em;color:var(--doux)}
+.atelier .trait{width:3px;height:60px;background:var(--or);margin-bottom:26px}
+.atelier .bouton{margin-top:32px}
+
+/* Composer sa demande */
+.composer{background:var(--surface)}
+.composer .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px}
+.composer h2{font-size:clamp(2rem,3.8vw,3.2rem)}
+.composer .intro p{margin-top:18px;color:var(--doux);max-width:28em}
+.coord{margin-top:28px;display:flex;flex-direction:column;gap:4px}
+form{display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
+fieldset{border:0;padding:0;margin:0;grid-column:1/-1}
+legend,label{font-size:.9rem;color:var(--doux);display:block;margin-bottom:8px}
+.puces{display:flex;flex-wrap:wrap;gap:8px}
+.puces label{margin:0;cursor:pointer}
+.puces input{position:absolute;opacity:0;pointer-events:none}
+.puces span{display:inline-block;padding:9px 14px;border:1px solid var(--filet);color:var(--texte);font-size:.95rem}
+.puces input:checked + span{border-color:var(--or);background:var(--or);color:#1a1712}
+.puces input:focus-visible + span{outline:2px solid var(--or);outline-offset:2px}
+input[type=text],input[type=email],input[type=number],select,textarea{width:100%;background:var(--fond);color:var(--texte);border:1px solid var(--filet);padding:12px;font:inherit;font-size:1rem}
+input[type=file]{color:var(--doux);font:inherit;font-size:.9rem}
+.plein-l{grid-column:1/-1}
+.envoi{grid-column:1/-1;display:flex;flex-wrap:wrap;align-items:center;gap:16px}
+.message{color:var(--or);font-size:.95rem}
+
+/* Section animée « Pourquoi nous confier vos finitions » */
+.pourquoi{padding-block:72px 64px;border-bottom:1px solid var(--filet)}
+.pourquoi .sur-titre{font-family:var(--f-texte);font-weight:400;font-size:1rem;color:var(--doux);margin:0 0 18px;font-variation-settings:normal}
+.rejouer-anim{margin-top:14px;background:transparent;border:0;color:var(--doux);font:inherit;font-size:.9rem;cursor:pointer;padding:0;text-decoration:underline;text-underline-offset:3px}
+.rejouer-anim:hover{color:var(--texte)}
+#pourquoi .a-scene{background:var(--fond)!important;position:relative;width:100%;aspect-ratio:16/9;max-height:80vh;background:#1f1c18;overflow:hidden;margin-top:14px}
+#pourquoi .a-s{position:absolute;inset:0;display:grid;place-items:center;text-align:center;visibility:hidden}
+#pourquoi .a-s > div{width:100%;display:grid;justify-items:center}
+#pourquoi .a-mot{font-family:"Archivo",Arial,sans-serif;font-variation-settings:"wdth" 125;font-weight:500;letter-spacing:.02em;line-height:1;text-transform:uppercase;margin:0;white-space:nowrap;font-size:120px}
+#pourquoi .a-dore{background:linear-gradient(100deg,#7a5300 0%,#c58e00 22%,#ffe39a 34%,#e6aa00 44%,#8f6400 60%,#e6aa00 74%,#ffe39a 84%,#b07c00 100%);background-size:260% 100%;background-position:100% 0;-webkit-background-clip:text;background-clip:text;color:transparent}
+#pourquoi .a-etiq{display:block;margin-top:clamp(14px,2.4vw,30px);font:500 clamp(1.2rem,2.3vw,1.8rem) "Jost",Arial,sans-serif;color:#f1eadf;letter-spacing:.05em}
+#pourquoi .motsvg{width:min(88%,1100px)}
+#pourquoi .motsvg svg,.svgbox svg{width:100%;height:auto;display:block;overflow:visible}
+#pourquoi .svgbox{width:min(80%,980px)}
+#pourquoi .a-ligne{display:block;overflow:hidden;padding-bottom:.1em}
+#pourquoi .a-ligne > span{display:inline-block}
+#pourquoi .a-phrase{font-family:"Archivo",Arial,sans-serif;font-variation-settings:"wdth" 112;font-weight:300;font-size:clamp(1.8rem,5.6vw,5rem);line-height:1.08;margin:0}
+#pourquoi .a-liste{display:flex;flex-wrap:wrap;justify-content:center;gap:8px 20px;margin-top:clamp(14px,2.6vw,30px);font:500 clamp(1rem,1.8vw,1.4rem) "Jost",Arial,sans-serif;color:#f1eadf;padding-inline:12px}
+#pourquoi .a-liste span{display:inline-flex;align-items:center;gap:20px}
+#pourquoi .a-liste span + span::before{content:"";width:2px;height:1.1em;background:var(--or)}
+#pourquoi .a-cta{display:inline-block;margin-top:clamp(16px,2.6vw,30px);background:var(--or);color:#16130f;text-decoration:none;font:500 1rem "Jost",Arial,sans-serif;padding:13px 24px}
+#pourquoi .a-eclat{position:absolute;top:-20%;bottom:-20%;width:38%;left:-45%;background:linear-gradient(90deg,rgba(255,214,120,0) 0%,rgba(255,214,120,.25) 35%,rgba(255,244,214,.95) 50%,rgba(255,214,120,.25) 65%,rgba(255,214,120,0) 100%);transform:skewX(-18deg);mix-blend-mode:screen;pointer-events:none;opacity:0;z-index:5}
+#pourquoi .svgmot{font-family:"Archivo",Arial,sans-serif;font-weight:500;font-variation-settings:"wdth" 125;letter-spacing:4px}
+@media (max-width:700px){#pourquoi .a-scene{aspect-ratio:4/5;max-height:none}
+#pourquoi .svgbox{width:92%}
+#pourquoi .motsvg{width:94%}}
+
+
+main{overflow-x:clip}
+[hidden]{display:none!important}
+#pourquoi .a-scene{contain:paint}
+/* Menu mobile */
+.burger{display:none;background:transparent;border:1px solid rgba(255,255,255,.35);color:var(--texte);width:46px;height:42px;cursor:pointer;padding:0;position:relative}
+.burger span{position:absolute;left:12px;right:12px;height:2px;background:currentColor;transition:transform .3s,opacity .3s}
+.burger span:nth-child(1){top:13px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:27px}
+.burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.burger[aria-expanded="true"] span:nth-child(2){opacity:0}
+.burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+.menu-mobile{position:fixed;inset:0;z-index:9;background:var(--fond);padding:calc(96px + env(safe-area-inset-top,0px)) var(--g-d) 32px var(--g-g);display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1);visibility:hidden}
+.menu-mobile.ouvert{transform:none;visibility:visible}
+.menu-mobile a{font-family:var(--f-titre);font-weight:var(--t-poids);font-size:2rem;text-decoration:none;color:var(--texte);padding-block:10px;border-bottom:1px solid var(--filet)}
+.menu-mobile .bas-menu{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.menu-mobile .bas-menu a{font-family:var(--f-texte);font-size:1rem;border:0;text-align:center}
+@media (max-width:1000px){.burger{display:block}.entete .nav{gap:12px}}
+
+/* Nuancier de films */
+.nuancier{border-top:1px solid var(--filet)}
+.nuancier .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.nuancier h2{font-size:clamp(2rem,3.6vw,3rem)}
+.nuancier .intro p{margin-top:18px;color:var(--doux);max-width:30em}
+.nuancier .intro a{color:var(--or)}
+.apercu{background:var(--fond-apercu,#1b1c1f);aspect-ratio:16/10;display:grid;place-items:center;position:relative;overflow:hidden;transition:background-color .5s}
+.groupe-t{margin:22px 0 0;font-size:.9rem;color:var(--doux);letter-spacing:.03em}
+.groupe-t + .teintes{margin-top:10px}
+.relief-motif{width:min(56%,300px);aspect-ratio:1/1;filter:drop-shadow(0 6px 10px rgba(0,0,0,.45))}
+.motif{width:100%;height:100%;background:var(--film,linear-gradient(100deg,#7a5300 0%,#c58e00 25%,#ffe39a 42%,#e6aa00 55%,#8f6400 80%,#d9a21e 100%));background-size:240% 100%;background-position:30% 0;-webkit-mask:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%3E%3Cdefs%3E%3CclipPath%20id%3D%22c%22%3E%3Cpath%20d%3D%22M120%2034%20L206%20120%20L120%20206%20L34%20120Z%22/%3E%3C/clipPath%3E%3C/defs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22miter%22%3E%3Cpath%20d%3D%22M120%206%20L234%20120%20L120%20234%20L6%20120Z%22%20stroke-width%3D%225%22/%3E%3Cpath%20d%3D%22M120%2022%20L218%20120%20L120%20218%20L22%20120Z%22%20stroke-width%3D%221.6%22/%3E%3Cg%20clip-path%3D%22url%28%23c%29%22%20stroke-width%3D%222.6%22%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22-22.7%22%20y2%3D%22129.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22-9.9%22%20y2%3D%22101.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%228.5%22%20y2%3D%2275.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2231.8%22%20y2%3D%2254.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2259.0%22%20y2%3D%2239.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2288.8%22%20y2%3D%2229.3%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22120.0%22%20y2%3D%2226.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22151.2%22%20y2%3D%2229.3%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22181.0%22%20y2%3D%2239.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22208.2%22%20y2%3D%2254.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22231.5%22%20y2%3D%2275.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22249.9%22%20y2%3D%22101.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22262.7%22%20y2%3D%22129.6%22/%3E%3C/g%3E%3Cpath%20d%3D%22M78%20176%20A42%2042%200%200%201%20162%20176%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M92%20176%20A28%2028%200%200%201%20148%20176%22%20stroke-width%3D%223%22/%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%2266%22%20r%3D%229%22%20stroke-width%3D%223.4%22/%3E%3C/g%3E%3Cpath%20d%3D%22M104%20176%20A16%2016%200%200%201%20136%20176Z%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M120%20206%20L104%20190%20L136%20190Z%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E") center/contain no-repeat;mask:url("data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20240%20240%22%3E%3Cdefs%3E%3CclipPath%20id%3D%22c%22%3E%3Cpath%20d%3D%22M120%2034%20L206%20120%20L120%20206%20L34%20120Z%22/%3E%3C/clipPath%3E%3C/defs%3E%3Cg%20fill%3D%22none%22%20stroke%3D%22%23fff%22%20stroke-linejoin%3D%22miter%22%3E%3Cpath%20d%3D%22M120%206%20L234%20120%20L120%20234%20L6%20120Z%22%20stroke-width%3D%225%22/%3E%3Cpath%20d%3D%22M120%2022%20L218%20120%20L120%20218%20L22%20120Z%22%20stroke-width%3D%221.6%22/%3E%3Cg%20clip-path%3D%22url%28%23c%29%22%20stroke-width%3D%222.6%22%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22-22.7%22%20y2%3D%22129.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22-9.9%22%20y2%3D%22101.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%228.5%22%20y2%3D%2275.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2231.8%22%20y2%3D%2254.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2259.0%22%20y2%3D%2239.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%2288.8%22%20y2%3D%2229.3%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22120.0%22%20y2%3D%2226.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22151.2%22%20y2%3D%2229.3%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22181.0%22%20y2%3D%2239.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22208.2%22%20y2%3D%2254.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22231.5%22%20y2%3D%2275.6%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22249.9%22%20y2%3D%22101.0%22/%3E%3Cline%20x1%3D%22120%22%20y1%3D%22176%22%20x2%3D%22262.7%22%20y2%3D%22129.6%22/%3E%3C/g%3E%3Cpath%20d%3D%22M78%20176%20A42%2042%200%200%201%20162%20176%22%20stroke-width%3D%223%22/%3E%3Cpath%20d%3D%22M92%20176%20A28%2028%200%200%201%20148%20176%22%20stroke-width%3D%223%22/%3E%3Ccircle%20cx%3D%22120%22%20cy%3D%2266%22%20r%3D%229%22%20stroke-width%3D%223.4%22/%3E%3C/g%3E%3Cpath%20d%3D%22M104%20176%20A16%2016%200%200%201%20136%20176Z%22%20fill%3D%22%23fff%22/%3E%3Cpath%20d%3D%22M120%20206%20L104%20190%20L136%20190Z%22%20fill%3D%22%23fff%22/%3E%3C/svg%3E") center/contain no-repeat}
+.apercu .echantillon{background-size:220% 100%;font-family:var(--f-titre);font-weight:600;font-size:clamp(2.4rem,6vw,5.4rem);letter-spacing:.04em;text-transform:uppercase;background:var(--film,linear-gradient(100deg,#7a5300,#ffe39a 40%,#e6aa00 55%,#8f6400));-webkit-background-clip:text;background-clip:text;color:transparent;transition:filter .4s}
+.apercu .nom-film{position:absolute;left:18px;bottom:14px;font-size:.95rem;color:var(--doux);mix-blend-mode:difference}
+.teintes{display:flex;flex-wrap:wrap;gap:10px;margin-top:18px}
+.teintes button{width:44px;height:44px;border-radius:50%;border:2px solid transparent;background:var(--film);cursor:pointer;padding:0;box-shadow:inset 0 0 0 1px rgba(255,255,255,.15)}
+.teintes button[aria-pressed="true"]{border-color:var(--texte)}
+.teintes button:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+
+/* Comment ça se passe */
+.process{border-top:1px solid var(--filet)}
+.process .tete p{font-size:1.15rem;color:#d9dadd}
+.etapes-pdd{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;counter-reset:e;position:relative}
+.etapes-pdd li{background:var(--surface);padding:26px 24px 28px;counter-increment:e;position:relative}
+.etapes-pdd li::before{content:counter(e);display:grid;place-items:center;width:46px;height:46px;border-radius:50%;background:var(--or);color:#16130f;font-family:var(--f-titre);font-weight:600;font-size:1.35rem;margin-bottom:18px}
+.etapes-pdd li:not(:last-child)::after{content:"";position:absolute;top:49px;right:-18px;width:18px;height:2px;background:var(--or)}
+.etapes-pdd h3{font-size:1.5rem;font-weight:400;color:var(--texte)}
+.etapes-pdd p{margin-top:10px;color:#d9dadd;font-size:1.05rem;line-height:1.55}
+.atouts{margin-top:22px;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.atouts div{display:flex;flex-direction:column;gap:2px;border-left:3px solid var(--or);padding:14px 20px;background:rgba(230,170,0,.07)}
+.atouts strong{font-family:var(--f-titre);font-weight:400;font-size:1.6rem;color:var(--or)}
+.atouts span{color:#d9dadd;font-size:1.05rem}
+@media (max-width:760px){.atouts{grid-template-columns:1fr}.etapes-pdd li::after{display:none}}
+
+/* FAQ */
+.faq .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px}
+.faq h2{font-size:clamp(2rem,3.6vw,3rem)}
+.faq .intro p{margin-top:18px;color:var(--doux)}
+.faq .intro a{color:var(--or)}
+.faq details{border-bottom:1px solid var(--filet)}
+.faq details:first-child{border-top:1px solid var(--filet)}
+.faq summary{list-style:none;cursor:pointer;padding:20px 40px 20px 0;position:relative;font-size:1.12rem;font-weight:400}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"";position:absolute;right:8px;top:50%;width:12px;height:12px;border-right:2px solid var(--or);border-bottom:2px solid var(--or);transform:translateY(-70%) rotate(45deg);transition:transform .3s}
+.faq details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.faq details p{padding:0 0 22px;color:var(--doux);max-width:60ch}
+
+/* Demande en 3 étapes */
+.progression{grid-column:1/-1;display:flex;gap:8px;list-style:none;margin:0 0 6px;padding:0}
+.progression li{flex:1;border-top:3px solid var(--filet);padding-top:8px;font-size:.88rem;color:var(--doux)}
+.progression li.faite,.progression li.active{border-color:var(--or);color:var(--texte)}
+.etape-f{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;gap:22px 20px}
+.etape-f[hidden]{display:none}
+.depot{grid-column:1/-1;border:1.5px dashed var(--filet);padding:28px;text-align:center;color:var(--doux);cursor:pointer;transition:border-color .2s,background .2s}
+.depot.survol{border-color:var(--or);background:rgba(230,170,0,.06)}
+.depot strong{color:var(--texte);font-weight:500}
+.depot input{position:absolute;opacity:0;width:1px;height:1px}
+.depot .fichiers{margin-top:8px;color:var(--or)}
+.nav-etapes{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.erreur{color:#f0a37a;font-size:.92rem}
+.merci{grid-column:1/-1;border:1px solid var(--or);padding:28px}
+.merci h3{font-size:1.6rem}
+.merci p{margin-top:10px;color:var(--doux)}
+.coord a{color:var(--texte);text-decoration:none}
+.coord a:hover{color:var(--or)}
+
+/* Barre mobile : appeler + devis */
+.devis-mobile .duo{display:grid;grid-template-columns:1fr 2fr;gap:10px}
+.devis-mobile .bouton.ligne{border-color:rgba(255,255,255,.5)}
+
+@media (max-width:1000px){.etapes-pdd{grid-template-columns:repeat(2,minmax(0,1fr))}.etapes-pdd li:nth-child(2)::after{display:none}}
+@media (max-width:760px){
+  .nuancier .cadre,.faq .cadre{grid-template-columns:1fr;gap:24px}
+  .etapes-pdd{grid-template-columns:1fr}
+  .etape-f{grid-template-columns:1fr}
+}
+
+/* Pied */
+.pied{border-top:1px solid var(--filet);font-size:.9rem;color:var(--doux)}
+.pied .grille{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:32px;padding-block:48px}
+.pied img{height:60px;width:auto;margin-bottom:12px}
+.pied h3{font-family:var(--f-texte);font-weight:500;font-size:.95rem;color:var(--texte);margin-bottom:10px;font-variation-settings:normal}
+.pied ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.pied a{text-decoration:none}.pied a:hover{color:var(--texte)}
+.mentions{display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;padding-block:18px;border-top:1px solid var(--filet);font-size:.85rem}
+
+/* Bouton devis fixe sur mobile */
+.devis-mobile{display:none}
+
+@media (prefers-reduced-motion:reduce){.reflet{animation:none;color:var(--texte);background:none}.loupe img,.entete{transition:none}}
+@media (max-width:1000px){
+  .nav a:not(.bouton){display:none}
+  .finitions{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .finition:first-child{grid-column:1/-1}
+  .finition:first-child .loupe{aspect-ratio:16/9}
+  .pied .grille{grid-template-columns:1fr 1fr}
+}
+@media (max-width:760px){
+  .logo img{height:40px}
+  .nav .bouton{display:none}
+  .ouverture{min-height:0;display:block}
+  .ouverture > img{position:relative;left:0;width:100%;height:auto;aspect-ratio:4/5}
+  .ouverture::before{background:linear-gradient(180deg,rgba(var(--voile),.7) 0%,rgba(var(--voile),0) 16%,rgba(var(--voile),0) 30%,rgba(var(--voile),.85) 56%,rgba(var(--voile),1) 76%)}
+  .ouverture .cadre{margin-top:-38%;padding-block:0 40px}
+  .tete,.atelier .cadre,.composer .cadre,.marques{grid-template-columns:1fr;gap:24px}
+  .section{padding-block:64px}
+  .m1{grid-column:1/-1;grid-row:auto}
+  .m2,.m3,.m4,.m5{grid-column:span 6}
+  form{grid-template-columns:1fr}
+  .pied .grille{grid-template-columns:1fr;padding-bottom:96px}
+  .devis-mobile{display:block;position:fixed;left:0;right:0;bottom:0;z-index:8;padding:10px var(--g-d) calc(10px + env(safe-area-inset-bottom,0px)) var(--g-g);background:rgba(var(--voile),.96);border-top:1px solid var(--filet)}
+  .devis-mobile .bouton{display:block;text-align:center}
+}
+
+/* Page Dorure à chaud */
+.fil{font-size:.88rem;color:var(--doux);padding-top:110px}
+.fil a{color:var(--doux);text-decoration:none}.fil a:hover{color:var(--texte)}
+.hero-p .cadre{display:grid;grid-template-columns:6fr 6fr;gap:56px;align-items:center;padding-block:28px 80px}
+.hero-p h1{font-size:clamp(2.8rem,6.4vw,5.6rem);line-height:1}
+.hero-p .chapo{margin-top:22px;font-size:1.2rem;max-width:32em;color:#e3e3e6}
+.hero-p .actions{margin-top:30px;display:flex;flex-wrap:wrap;gap:12px}
+.hero-p figure{margin:0;overflow:hidden}
+.hero-p figure img{width:100%;aspect-ratio:4/3.3;object-fit:cover}
+.chiffres{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px;margin-top:40px}
+.chiffres div{border-top:2px solid var(--or);padding-top:12px}
+.chiffres strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.45rem;color:var(--texte)}
+.chiffres span{font-size:.92rem;color:var(--doux)}
+.principe .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:start}
+.principe h2,.variantes h2,.fiche h2,.galerie h2,.combine h2{font-size:clamp(2rem,3.6vw,3rem)}
+.principe .photos{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:28px}
+.principe .photos img{width:100%;aspect-ratio:3/4;object-fit:cover}
+.principe ol{list-style:none;margin:0;padding:0;display:grid;gap:14px;counter-reset:p}
+.principe li{background:var(--surface);padding:22px 24px 22px 84px;position:relative;counter-increment:p}
+.principe li::before{content:counter(p);position:absolute;left:24px;top:22px;width:40px;height:40px;border-radius:50%;background:var(--or);color:#16130f;display:grid;place-items:center;font-family:var(--f-titre);font-weight:600;font-size:1.2rem}
+.principe h3{font-size:1.4rem}
+.principe li p{margin-top:6px;color:#d9dadd;font-size:1.04rem}
+.variantes{background:var(--surface)}
+.cartes-v{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+.cartes-v .img{overflow:hidden;aspect-ratio:4/3}
+.cartes-v img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.cartes-v li:hover img{transform:scale(1.06)}
+.cartes-v h3{font-size:1.5rem;margin-top:16px}
+.cartes-v p{margin-top:8px;color:#d9dadd}
+.fiche .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px}
+.fiche dl{margin:0;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.6fr)}
+.fiche dt,.fiche dd{margin:0;padding:16px 0;border-bottom:1px solid var(--filet)}
+.fiche dt{color:var(--doux)}
+.fiche dd{color:var(--texte);font-variant-numeric:tabular-nums}
+.fiche .intro p{margin-top:18px;color:var(--doux)}
+.fiche .intro .bouton{margin-top:24px}
+.galerie-g{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.galerie-g button{all:unset;cursor:zoom-in;display:block;overflow:hidden;aspect-ratio:1/1;position:relative;width:100%}
+.galerie-g button:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.galerie-g img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.galerie-g button:hover img{transform:scale(1.05)}
+.galerie-g span{position:absolute;left:0;right:0;bottom:0;padding:34px 14px 12px;background:linear-gradient(0deg,rgba(var(--voile),.9),rgba(var(--voile),0));font-size:1rem;color:var(--texte)}
+.combine{background:var(--surface)}
+.liens-f{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
+.liens-f a{display:block;padding:24px 20px;border:1px solid var(--filet);text-decoration:none;transition:border-color .2s,background .2s}
+.liens-f a:hover{border-color:var(--or);background:rgba(230,170,0,.06)}
+.liens-f strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.35rem}
+.liens-f span{display:block;margin-top:6px;color:var(--doux);font-size:.95rem}
+.appel .cadre{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:20px;padding-block:72px}
+.appel h2{font-size:clamp(2rem,4vw,3.2rem)}
+.appel .actions{display:flex;flex-wrap:wrap;gap:12px}
+@media (max-width:1000px){.liens-f{grid-template-columns:repeat(2,minmax(0,1fr))}.cartes-v{grid-template-columns:1fr 1fr}}
+@media (max-width:760px){
+  .fil{padding-top:92px}
+  .hero-p .cadre,.principe .cadre,.fiche .cadre{grid-template-columns:1fr;gap:28px}
+  .hero-p figure{order:-1}
+  .chiffres{grid-template-columns:1fr 1fr}
+  .cartes-v{grid-template-columns:1fr}
+  .galerie-g{grid-template-columns:1fr 1fr}
+  .fiche dl{grid-template-columns:1fr}.fiche dt{padding-bottom:2px;border:0}.fiche dd{padding-top:0}
+}
+
+.bandeau{margin-top:40px;overflow:hidden;-webkit-mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent);mask:linear-gradient(90deg,transparent,#000 6%,#000 94%,transparent)}
+.piste{list-style:none;margin:0;padding:0;display:flex;gap:14px;width:max-content;animation:defile 48s linear infinite}
+.bandeau:hover .piste{animation-play-state:paused}
+.piste li{position:relative;width:260px;flex:none}
+.piste img{width:100%;aspect-ratio:1/1;object-fit:cover;display:block}
+.piste span{position:absolute;left:0;right:0;bottom:0;padding:30px 12px 10px;background:linear-gradient(0deg,rgba(var(--voile),.9),rgba(var(--voile),0));font-size:.95rem}
+@keyframes defile{to{transform:translateX(calc(-50% - 7px))}}
+@media (prefers-reduced-motion:reduce){.piste{animation:none}}
+.fiche dl{margin-top:24px}
+.fiche .intro .bouton{margin-top:24px}
+.questions h3{font-size:1.5rem;margin-bottom:12px}
+.questions details{border-bottom:1px solid var(--filet)}
+.questions details:first-of-type{border-top:1px solid var(--filet)}
+.questions summary{list-style:none;cursor:pointer;padding:18px 40px 18px 0;position:relative;font-size:1.08rem}
+.questions summary::-webkit-details-marker{display:none}
+.questions summary::after{content:"";position:absolute;right:8px;top:50%;width:11px;height:11px;border-right:2px solid var(--or);border-bottom:2px solid var(--or);transform:translateY(-70%) rotate(45deg);transition:transform .3s}
+.questions details[open] summary::after{transform:translateY(-30%) rotate(-135deg)}
+.questions details p{padding:0 0 18px;color:#d9dadd}
+.appel{border-top:1px solid var(--filet);background:var(--surface)}
+.appel .assoc{margin-top:12px;color:var(--doux);max-width:46em}
+.appel .assoc a{color:var(--texte)}
+@media (min-width:761px){.fiche .cadre{grid-template-columns:6fr 6fr}}
+@media (max-width:760px){.piste li{width:200px}}
+</style>
+
+<header class="entete plein" id="entete">
+  <div class="cadre">
+    <a class="logo" href="index.html" aria-label="Pyrénées Dorure Découpe, accueil"><img src="logo.svg" alt="Pyrénées Dorure Découpe" width="141" height="85"></a>
+    <nav class="nav" aria-label="Navigation principale">
+      <a href="index.html#finitions">Savoir-faire</a><a href="atelier.html">L'atelier</a><a href="index.html#faq">Questions</a><a href="index.html#demande">Contact</a>
+      <a class="bouton" href="index.html#demande">Demander un devis</a>
+      <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
+    </nav>
+  </div>
+</header>
+<nav class="menu-mobile" id="menu-mobile" aria-label="Menu">
+  <a href="index.html#finitions">Savoir-faire</a><a href="dorure.html">— Dorure à chaud</a><a href="gaufrage.html">— Gaufrage</a><a href="decoupe.html">— Découpe</a><a href="pelliculage.html">— Pelliculage</a><a href="vernis-selectif.html">— Vernis sélectif</a><a href="index.html#nuancier">Nos films</a><a href="atelier.html">L'atelier</a><a href="index.html#faq">Questions fréquentes</a><a href="guide-fichiers.html">Préparer vos fichiers</a><a href="index.html#demande">Contact</a>
+  <div class="bas-menu"><a class="bouton" href="index.html#demande">Demander un devis</a><a class="bouton ligne" href="tel:+33559149235">Appeler le 05 59 14 92 35</a></div>
+</nav>
+
+<main>
+  <div class="cadre"><p class="fil"><a href="index.html">Accueil</a> / <a href="index.html#finitions">Savoir-faire</a> / Dorure à chaud</p></div>
+
+  <section class="hero-p">
+    <div class="cadre">
+      <div>
+        <h1 data-r="titre">Dorure à chaud</h1>
+        <p class="chapo" data-r="texte">Un film métallisé ou pigmenté, déposé à chaud sur votre feuille : le logo accroche la lumière et l'emballage gagne sa signature. À plat ou galbée, seule ou associée à d'autres finitions.</p>
+        <div class="actions"><a class="bouton" href="index.html#demande">Demander un devis</a><a class="bouton ligne" href="#nuancier">Voir les teintes</a></div>
+        <div class="chiffres">
+          <div><strong>75 × 105 cm</strong><span>format maximum</span></div>
+          <div><strong>0,1 à 1,8 mm</strong><span>papier, carton compact</span></div>
+          <div><strong>+ de 50</strong><span>teintes en stock</span></div>
+          <div><strong>1 à 2 sem.</strong><span>transport compris</span></div>
+        </div>
+      </div>
+      <figure><img src="pa/12.jpg" alt="Carte dorée à chaud posée dans un coffret ouvert" width="1800" height="1200"></figure>
+    </div>
+  </section>
+
+  <section class="section variantes" aria-labelledby="t-var">
+    <div class="cadre">
+      <div class="tete"><h2 id="t-var" data-r="titre">Ce que nous réalisons</h2><p data-r="texte">Trois façons de travailler la dorure, selon l'effet recherché, pour les imprimeurs du luxe, de la parfumerie, des vins et spiritueux et de la papeterie.</p></div>
+      <ul class="cartes-v">
+        <li><div class="img"><img src="pa/41.jpg" alt="Losange doré à plat sur un carnet blanc" loading="lazy" width="708" height="945"></div><h3>Dorure à plat</h3><p>Un aplat net et brillant, pour les logos, les textes fins et les motifs graphiques.</p></li>
+        <li><div class="img"><img src="pa/27.jpg" alt="Dragon doré en relief sur papier noir" loading="lazy" width="1181" height="1181"></div><h3>Dorure galbée</h3><p>Le relief et la dorure en un seul passage : le motif se soulève et capte la lumière sur ses courbes.</p></li>
+        <li><div class="img"><img src="pa/23.jpg" alt="Vagues gaufrées autour d'un logo doré à chaud" loading="lazy" width="1181" height="1181"></div><h3>Dorure et gaufrage</h3><p>Une dorure posée au cœur d'un décor en relief, pour une pièce riche au regard comme au toucher.</p></li>
+      </ul>
+      <div class="bandeau" aria-label="Réalisations en dorure"><ul class="piste"><li><img src="pa/14.jpg" alt="Carte ornée d'un cœur doré dans un coffret" loading="lazy"><span>Luxe</span></li><li><img src="pa/04.jpg" alt="Étiquette de cognac dorée à chaud" loading="lazy"><span>Vins &amp; Spiritueux</span></li><li><img src="pa/03.jpg" alt="Logo de parfumeur doré sur papier blanc" loading="lazy"><span>Parfumerie</span></li><li><img src="pa/08.jpg" alt="Colombes dorées à chaud sur carte blanche" loading="lazy"><span>Papeterie haut de gamme</span></li><li><img src="pa/44.jpg" alt="Livrets noirs à motif topographique doré" loading="lazy"><span>Vins &amp; Spiritueux</span></li><li><img src="pa/37.jpg" alt="Invitation dorée cuivre sur papier blanc" loading="lazy"><span>Papeterie</span></li><li aria-hidden="true"><img src="pa/14.jpg" alt="Carte ornée d'un cœur doré dans un coffret" loading="lazy"><span>Luxe</span></li><li aria-hidden="true"><img src="pa/04.jpg" alt="Étiquette de cognac dorée à chaud" loading="lazy"><span>Vins &amp; Spiritueux</span></li><li aria-hidden="true"><img src="pa/03.jpg" alt="Logo de parfumeur doré sur papier blanc" loading="lazy"><span>Parfumerie</span></li><li aria-hidden="true"><img src="pa/08.jpg" alt="Colombes dorées à chaud sur carte blanche" loading="lazy"><span>Papeterie haut de gamme</span></li><li aria-hidden="true"><img src="pa/44.jpg" alt="Livrets noirs à motif topographique doré" loading="lazy"><span>Vins &amp; Spiritueux</span></li><li aria-hidden="true"><img src="pa/37.jpg" alt="Invitation dorée cuivre sur papier blanc" loading="lazy"><span>Papeterie</span></li></ul></div>
+    </div>
+  </section>
+
+  <section class="section nuancier" id="nuancier" aria-labelledby="t-nuancier">
+    <div class="cadre">
+      <div class="intro">
+        <h2 id="t-nuancier" data-r="titre">Plus de 50 teintes de films en stock</h2>
+        <p data-r="texte">Métallisés ou pigmentés, brillants ou mats : chaque film existe en plusieurs qualités de colle pour accrocher sur votre support. Choisissez une teinte pour voir son rendu.</p>
+        <p class="groupe-t">Métallisés</p>
+        <div class="teintes" role="group" aria-label="Teintes métallisées">
+          <button type="button" aria-pressed="true" aria-label="Or brillant" data-nom="Or brillant" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#7a5300 0%,#c58e00 25%,#ffe39a 42%,#e6aa00 55%,#8f6400 80%,#d9a21e 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Or mat" data-nom="Or mat" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#a07a2a 0%,#c39a45 35%,#d6b064 50%,#c39a45 65%,#a37d2e 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Or rose" data-nom="Or rose" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#7d4a3b 0%,#c98a74 30%,#ffd9c9 45%,#d79b84 60%,#8a5444 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Cuivre" data-nom="Cuivre" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#5e2f12 0%,#b0602c 30%,#f6b07a 45%,#c06a33 60%,#6b3616 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Argent" data-nom="Argent" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#5d6066 0%,#a9adb4 30%,#ffffff 45%,#b9bdc3 60%,#666a70 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Argent mat" data-nom="Argent mat" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#8c8f94 0%,#b4b7bc 45%,#c8cbd0 55%,#9a9da2 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Rouge métallisé" data-nom="Rouge métallisé" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#4d0a0a 0%,#a3191b 30%,#f2797a 45%,#b4201f 60%,#5a0c0c 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Bleu métallisé" data-nom="Bleu métallisé" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#0b1d45 0%,#21479a 30%,#8fb4ff 45%,#2a55b0 60%,#0e2352 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Vert métallisé" data-nom="Vert métallisé" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#0d3320 0%,#1f7a4a 30%,#8fe0b5 45%,#22874f 60%,#0f3a24 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Holographique" data-nom="Holographique" data-fond="#1b1c1f" style="--film:linear-gradient(100deg,#b8c4d6 0%,#f7a8d8 18%,#a8e6f7 36%,#fff3a8 52%,#b3f7c4 68%,#d0b3f7 84%,#c4ccd8 100%)"></button>
+        </div>
+        <p class="groupe-t">Pigmentés (non métalliques)</p>
+        <div class="teintes" role="group" aria-label="Teintes pigmentées">
+          <button type="button" aria-pressed="false" aria-label="Noir" data-nom="Noir" data-fond="#e9e1d1" style="--film:linear-gradient(100deg,#141414 0%,#1c1c1c 45%,#2a2a2a 50%,#1c1c1c 55%,#141414 100%)"></button>
+          <button type="button" aria-pressed="false" aria-label="Blanc" data-nom="Blanc" data-fond="#2c2d31" style="--film:linear-gradient(100deg,#ebe8e2 0%,#f7f5f1 45%,#ffffff 50%,#f2efe9 55%,#e6e3dc 100%)"></button>
+        </div>
+                <p class="indice" style="margin-top:14px">Teintes indicatives : demandez-nous la référence exacte pour votre projet.</p>
+      </div>
+      <div class="apercu" id="apercu" aria-live="polite"><div class="relief-motif"><div class="motif" id="echantillon" role="img" aria-label="Motif art déco doré"></div></div><span class="nom-film" id="nom-film">Or brillant</span></div>
+    </div>
+  </section>
+
+  <section class="section fiche" aria-labelledby="t-fiche">
+    <div class="cadre">
+      <div class="intro">
+        <h2 id="t-fiche" data-r="titre">En pratique</h2>
+        <dl>
+          <dt>Format maximum</dt><dd>75 × 105 cm</dd>
+          <dt>Supports</dt><dd>Papier et carton compact, de 0,1 à 1,8 mm</dd>
+          <dt>Finesse de trait</dt><dd>0,3 mm en trait plein, 0,5 mm en réserve</dd>
+          <dt>Films</dt><dd>Plus de 50 teintes en stock, métallisées et pigmentées</dd>
+          <dt>Délai moyen</dt><dd>1 à 2 semaines, transport compris</dd>
+          <dt>Essais</dt><dd>Possibles pour les dossiers techniques</dd>
+        </dl>
+        <a class="bouton ligne" href="guide-fichiers.html">Préparer vos fichiers</a>
+      </div>
+      <div class="questions">
+        <h3>Questions fréquentes</h3>
+        <details><summary>Peut-on dorer sur un papier pelliculé ou vernis ?</summary><p>Oui. Indiquez-nous le support exact : nous sélectionnons le film adapté.</p></details>
+        <details><summary>Quelle différence entre dorure à plat et dorure galbée ?</summary><p>La dorure à plat dépose le film sur une surface plane. La dorure galbée met le motif en relief dans le même passage : il prend du volume et accroche la lumière sur ses courbes.</p></details>
+        <details><summary>Et en dessous de 0,3 mm ?</summary><p>Le film risque de boucher ou de ne pas accrocher. Nous vous conseillons un essai avant la série.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <section class="appel">
+    <div class="cadre">
+      <div>
+        <h2 data-r="titre">Un projet de dorure ?</h2>
+        <p class="assoc">Se combine avec <a href="gaufrage.html">le gaufrage</a>, <a href="decoupe.html">la découpe</a>, <a href="pelliculage.html">le pelliculage</a> et <a href="vernis-selectif.html">le vernis sélectif</a>, dans le même atelier.</p>
+      </div>
+      <div class="actions"><a class="bouton" href="index.html#demande">Demander un devis</a><a class="bouton ligne" href="tel:+33559149235">05 59 14 92 35</a></div>
+    </div>
+  </section>
+</main>
+
+<footer class="pied">
+  <div class="cadre">
+    <div class="grille">
+      <div><img src="logo.svg" alt="Pyrénées Dorure Découpe" width="141" height="85" loading="lazy"><p>ZI Berlanne, 13 rue des Landes<br>64160 Morlaas</p></div>
+      <div><h3>Savoir-faire</h3><ul><li><a href="dorure.html">Dorure à chaud</a></li><li><a href="gaufrage.html">Gaufrage</a></li><li><a href="decoupe.html">Découpe</a></li><li><a href="pelliculage.html">Pelliculage</a></li><li><a href="vernis-selectif.html">Vernis sélectif</a></li></ul></div>
+      <div><h3>L'entreprise</h3><ul><li><a href="atelier.html">L'atelier</a></li><li><a href="index.html#">Blog</a></li><li><a href="index.html#faq">Questions fréquentes</a></li><li><a href="guide-fichiers.html">Préparer vos fichiers</a></li><li><a href="index.html#demande">Contact</a></li></ul></div>
+      <div><h3>Nous suivre</h3><ul><li><a href="https://www.instagram.com/pyrenees_dorure/">Instagram</a></li></ul></div>
+    </div>
+    <div class="mentions"><span>© 2026 Pyrénées Dorure Découpe, membre du groupe BK'ART</span><span><a href="index.html#">Mentions légales</a> &nbsp; <a href="index.html#">Confidentialité</a></span></div>
+  </div>
+</footer>
+
+<div id="curseur" aria-hidden="true"></div>
+<div class="devis-mobile"><div class="duo"><a class="bouton ligne" href="tel:+33559149235">Appeler</a><a class="bouton" href="index.html#demande">Demander un devis</a></div></div>
+<dialog id="visionneuse" aria-label="Photo agrandie"><button class="fermer" type="button" id="fermer">Fermer</button><img id="v-img" alt=""><p id="v-legende"></p></dialog>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+(function(){
+  var $=function(q){return document.querySelector(q)}, $$=function(q){return Array.prototype.slice.call(document.querySelectorAll(q))};
+  /* Menu mobile */
+  var bg=$("#burger"), mm=$("#menu-mobile");
+  function menu(o){bg.setAttribute("aria-expanded",o?"true":"false");bg.setAttribute("aria-label",o?"Fermer le menu":"Ouvrir le menu");mm.classList.toggle("ouvert",o);document.body.style.overflow=o?"hidden":""}
+  bg.addEventListener("click",function(){menu(bg.getAttribute("aria-expanded")!=="true")});
+  mm.querySelectorAll("a").forEach(function(a){a.addEventListener("click",function(){menu(false)})});
+  document.addEventListener("keydown",function(e){if(e.key==="Escape") menu(false)});
+  /* Nuancier */
+  var ech=$("#echantillon"), nom=$("#nom-film");
+  $$(".teintes button").forEach(function(b){b.addEventListener("click",function(){
+    $$(".teintes button").forEach(function(x){x.setAttribute("aria-pressed",x===b?"true":"false")});
+    ech.style.setProperty("--film",b.style.getPropertyValue("--film")); nom.textContent=b.dataset.nom;
+    $("#apercu").style.setProperty("--fond-apercu",b.dataset.fond);
+    if(window.gsap) gsap.fromTo(ech,{backgroundPosition:"100% 0",scale:.96},{backgroundPosition:"0% 0",scale:1,duration:1.1,ease:"power2.out"});
+  })});
+  /* Visionneuse */
+  var dlg=$("#visionneuse");
+
+  $("#fermer").addEventListener("click",function(){dlg.close()}); dlg.addEventListener("click",function(e){if(e.target===dlg) dlg.close()});
+  if(!window.gsap) return;
+  /* Curseur doré */
+  var c=$("#curseur");
+  if(window.matchMedia&&window.matchMedia("(pointer:fine)").matches){
+    document.documentElement.classList.add("curseur-or");
+    window.addEventListener("mousemove",function(e){c.style.opacity=1;c.style.transform="translate3d("+e.clientX+"px,"+e.clientY+"px,0)"});
+    document.addEventListener("mouseleave",function(){c.style.opacity=0});
+    document.addEventListener("mouseover",function(e){c.classList.toggle("survol",!!(e.target.closest&&e.target.closest("a,button,summary,.cartes-v li")))});
+  }
+  /* Défilement : variante Graphite */
+  if(window.matchMedia&&window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+  gsap.registerPlugin(ScrollTrigger);
+  gsap.from(".hero-p h1",{x:-60,opacity:0,duration:1.1,ease:"expo.out"});
+  gsap.from(".hero-p .chapo,.hero-p .actions",{x:40,opacity:0,duration:1.1,stagger:.1,ease:"expo.out",delay:.15});
+  gsap.from(".chiffres div",{y:20,opacity:0,duration:.8,stagger:.08,ease:"power2.out",delay:.4});
+  gsap.fromTo(".hero-p figure",{clipPath:"inset(0 0 0 100%)"},{clipPath:"inset(0 0 0 0%)",duration:1.4,ease:"expo.inOut",delay:.1});
+  $$("section:not(.hero-p) [data-r=titre]").forEach(function(t){gsap.from(t,{x:-90,opacity:0,duration:1.1,ease:"expo.out",scrollTrigger:{trigger:t,start:"top 86%"}})});
+  $$("section:not(.hero-p) [data-r=texte]").forEach(function(t){gsap.from(t,{x:60,opacity:0,duration:1.1,ease:"expo.out",scrollTrigger:{trigger:t,start:"top 90%"}})});
+  
+  /* Ce que nous réalisons : comme les cartes de l'accueil (glissement latéral, photos balayées) */
+  gsap.from(".cartes-v li",{x:140,opacity:0,duration:1.2,stagger:.1,ease:"expo.out",scrollTrigger:{trigger:".cartes-v",start:"top 82%"}});
+  $$(".cartes-v .img").forEach(function(c){gsap.fromTo(c,{clipPath:"inset(0 100% 0 0)"},{clipPath:"inset(0 0% 0 0)",duration:1.2,ease:"expo.inOut",scrollTrigger:{trigger:c,start:"top 90%"}})});
+  gsap.from(".fiche dt,.fiche dd",{x:40,opacity:0,duration:.8,stagger:.05,ease:"power3.out",scrollTrigger:{trigger:".fiche dl",start:"top 88%"}});
+  gsap.from(".questions details",{x:60,opacity:0,duration:.9,stagger:.08,ease:"expo.out",scrollTrigger:{trigger:".questions",start:"top 88%"}});
+
+  /* Tous les autres blocs : apparition au défilement */
+  $$(".groupe-t,.teintes,.indice,.intro .actions,.intro > .bouton,.questions h3,.appel .assoc,.appel .actions").forEach(function(e){gsap.from(e,{y:28,opacity:0,duration:.9,ease:"power3.out",scrollTrigger:{trigger:e,start:"top 88%"}})});
+  $$(".bandeau").forEach(function(e){gsap.from(e,{x:120,opacity:0,duration:1.3,ease:"expo.out",scrollTrigger:{trigger:e,start:"top 88%"}})});
+  $$(".apercu,.scene-relief").forEach(function(e){gsap.fromTo(e,{clipPath:"inset(0 0 0 100%)"},{clipPath:"inset(0 0 0 0%)",duration:1.3,ease:"expo.inOut",scrollTrigger:{trigger:e,start:"top 88%"}})});
+  gsap.from(".fil",{opacity:0,duration:.8,delay:.2});
+})();
+</script>
+
+</body>
+</html>
