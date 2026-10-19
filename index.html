@@ -113,16 +113,35 @@ body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset
 
 /* Finitions en vignettes, avec loupe au survol */
 .finitions{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:20px}
-.finition a{display:flex;flex-direction:column;gap:8px;text-decoration:none}
-.loupe{position:relative;overflow:hidden;aspect-ratio:3/4;background:var(--surface)}
+.finition{display:flex}
+.finition a{display:flex;flex-direction:column;width:100%;text-decoration:none;border:1px solid var(--filet);background:rgba(255,255,255,.02);transition:transform .35s cubic-bezier(.2,.7,.2,1),border-color .35s,box-shadow .35s}
+.finition a:hover{transform:translateY(-6px);border-color:var(--or);box-shadow:0 18px 40px rgba(0,0,0,.38)}
+.finition a:focus-visible{outline:2px solid var(--or);outline-offset:4px}
+.loupe{position:relative;overflow:hidden;aspect-ratio:4/5;background:var(--surface)}
 .loupe img{width:100%;height:100%;object-fit:cover;transition:transform .35s ease}
 .loupe:hover img{transform:scale(1.9)}
-.finition h3{font-size:1.45rem;margin-top:8px}
+.pastille{position:absolute;right:12px;bottom:12px;width:42px;height:42px;border-radius:50%;background:var(--or);color:#1b1c1f;display:grid;place-items:center;font-size:1.15rem;font-weight:700;box-shadow:0 6px 18px rgba(0,0,0,.35);transition:transform .35s;pointer-events:none}
+.finition a:hover .pastille{transform:translateX(3px) scale(1.08)}
+.carte-corps{display:flex;flex-direction:column;gap:8px;padding:16px 18px 20px;flex:1}
+.finition h3{font-size:1.45rem;transition:color .3s}
 .finition a:hover h3{color:var(--or)}
 .finition p{font-size:.95rem;color:var(--doux)}
-.decouvrir{margin-top:4px;font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--or)}
-.finition .format{font-size:.88rem;color:var(--doux);font-variant-numeric:tabular-nums}
+.decouvrir{margin-top:auto;align-self:flex-start;padding:9px 16px;border:1px solid var(--or);font-size:.82rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--or);transition:background .3s,color .3s}
+.finition a:hover .decouvrir{background:var(--or);color:#1b1c1f}
+.finition .format{font-size:.88rem;color:var(--doux);font-variant-numeric:tabular-nums;margin-bottom:6px}
 .finition .format b{font-weight:500;color:var(--texte)}
+#finitions.section{padding-block:56px 36px}
+@media (max-width:760px){#finitions.section{padding-block:64px}}
+#finitions .tete{margin-bottom:36px}
+.tete .sur-titre-or{font-family:var(--f-texte);font-size:.82rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--or);margin:0 0 14px}
+.tete .appel-choix{margin-top:18px;color:var(--texte);font-size:1.08rem;display:flex;align-items:center;gap:12px}
+.appel-choix::before{content:"";width:34px;height:1px;background:var(--or)}
+/* Menu déroulant Savoir-faire */
+.sf-menu{position:relative;padding-block:12px}
+.sf-menu > a::after{content:"";display:inline-block;width:6px;height:6px;margin-left:8px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-3px) rotate(45deg)}
+.sf-liste{position:absolute;top:100%;left:-18px;min-width:230px;padding:8px 0;background:rgba(var(--voile),.98);border:1px solid var(--filet);box-shadow:0 18px 40px rgba(0,0,0,.4);opacity:0;visibility:hidden;transform:translateY(6px);transition:opacity .25s,transform .25s,visibility .25s}
+.sf-menu:hover .sf-liste,.sf-menu:focus-within .sf-liste{opacity:1;visibility:visible;transform:none}
+.sf-liste a{display:block;padding:10px 18px;white-space:nowrap}
 .indice{margin-top:18px;font-size:.88rem;color:var(--doux)}
 
 /* Domaines d'activité */
@@ -226,10 +245,10 @@ main{overflow-x:clip}
 .burger[aria-expanded="true"] span:nth-child(1){transform:translateY(7px) rotate(45deg)}
 .burger[aria-expanded="true"] span:nth-child(2){opacity:0}
 .burger[aria-expanded="true"] span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
-.menu-mobile{position:fixed;inset:0;z-index:9;background:var(--fond);padding:calc(96px + env(safe-area-inset-top,0px)) var(--g-d) 32px var(--g-g);display:flex;flex-direction:column;gap:6px;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1);visibility:hidden}
+.menu-mobile{position:fixed;inset:0;z-index:9;background:var(--fond);padding:calc(74px + env(safe-area-inset-top,0px)) var(--g-d) calc(18px + env(safe-area-inset-bottom,0px)) var(--g-g);display:flex;flex-direction:column;gap:0;overflow-y:auto;overscroll-behavior:contain;transform:translateY(-100%);transition:transform .45s cubic-bezier(.7,0,.2,1);visibility:hidden}
 .menu-mobile.ouvert{transform:none;visibility:visible}
-.menu-mobile a{font-family:var(--f-titre);font-weight:var(--t-poids);font-size:2rem;text-decoration:none;color:var(--texte);padding-block:10px;border-bottom:1px solid var(--filet)}
-.menu-mobile .bas-menu{margin-top:auto;display:flex;flex-direction:column;gap:10px}
+.menu-mobile a{font-family:var(--f-titre);font-weight:var(--t-poids);font-size:clamp(1.05rem,3.3vh,1.6rem);line-height:1.2;text-decoration:none;color:var(--texte);padding-block:clamp(6px,1.25vh,10px);border-bottom:1px solid var(--filet)}
+.menu-mobile .bas-menu{margin-top:auto;padding-top:14px;display:flex;flex-direction:column;gap:8px}
 .menu-mobile .bas-menu a{font-family:var(--f-texte);font-size:1rem;border:0;text-align:center}
 @media (max-width:1000px){.burger{display:block}.entete .nav{gap:12px}}
 
@@ -330,6 +349,7 @@ main{overflow-x:clip}
   .finitions{grid-template-columns:repeat(2,minmax(0,1fr))}
   .finition:first-child{grid-column:1/-1}
   .finition:first-child .loupe{aspect-ratio:16/9}
+  .sf-menu{display:none}
   .pied .grille{grid-template-columns:1fr 1fr}
 }
 @media (max-width:760px){
@@ -340,6 +360,20 @@ main{overflow-x:clip}
   .ouverture::before{background:linear-gradient(180deg,rgba(var(--voile),.7) 0%,rgba(var(--voile),0) 16%,rgba(var(--voile),0) 30%,rgba(var(--voile),.85) 56%,rgba(var(--voile),1) 76%)}
   .ouverture .cadre{margin-top:-38%;padding-block:0 40px}
   .tete,.atelier .cadre,.composer .cadre,.marques{grid-template-columns:1fr;gap:24px}
+  .finitions{gap:12px}
+  .finition .loupe,.finition:first-child .loupe{aspect-ratio:4/3}
+  .finition:first-child{grid-column:auto}
+  .finition:last-child{grid-column:1/-1}
+  .finition:last-child .loupe{aspect-ratio:21/9}
+  #finitions .tete > div{display:contents}
+  #finitions .tete{gap:0}
+  #finitions .tete h2{margin-bottom:18px}
+  #finitions .tete .appel-choix{order:3;margin-top:22px}
+  .finition p,.finition .format,.finition .decouvrir{display:none}
+  .carte-corps{padding:10px 12px 12px}
+  .finition h3{font-size:1.1rem}
+  .pastille{width:34px;height:34px;right:8px;bottom:8px;font-size:1rem}
+  .loupe:hover img{transform:none}
   .section{padding-block:64px}
   .m1{grid-column:1/-1;grid-row:auto}
   .m2,.m3,.m4,.m5{grid-column:span 6}
@@ -372,7 +406,7 @@ main{overflow-x:clip}
   <div class="cadre">
     <a class="logo" href="index.html" aria-label="Pyrénées Dorure Découpe, accueil"><img src="logo.svg" alt="Pyrénées Dorure Découpe" width="141" height="85"></a>
     <nav class="nav" aria-label="Navigation principale">
-      <a href="#finitions">Savoir-faire</a><a href="atelier.html">L'atelier</a><a href="blog/">Blog</a><a href="#demande">Contact</a>
+      <div class="sf-menu"><a href="#finitions" aria-haspopup="true">Savoir-faire</a><div class="sf-liste"><a href="dorure.html">Dorure à chaud</a><a href="gaufrage.html">Gaufrage</a><a href="decoupe.html">Découpe</a><a href="pelliculage.html">Pelliculage</a><a href="vernis-selectif.html">Vernis sélectif</a></div></div><a href="atelier.html">L'atelier</a><a href="blog/">Blog</a><a href="#demande">Contact</a>
       <a class="bouton" href="#demande">Demander un devis</a>
       <button class="burger" type="button" id="burger" aria-expanded="false" aria-controls="menu-mobile" aria-label="Ouvrir le menu"><span></span><span></span><span></span></button>
     </nav>
@@ -474,17 +508,16 @@ main{overflow-x:clip}
   <section class="section" id="finitions">
     <div class="cadre">
       <div class="tete">
-        <h2 data-r="titre">Cinq finitions, un seul atelier</h2>
+        <div><p class="sur-titre-or">Nos savoir-faire</p><h2 data-r="titre">Cinq finitions, un seul atelier</h2><p class="appel-choix">Choisissez une finition pour découvrir</p></div>
         <p data-r="texte">Chaque technique se suffit à elle-même ou se combine aux autres sur une même pièce : une dorure posée sur un gaufrage, un vernis sélectif sur un pelliculage mat, une découpe qui laisse apparaître l'intérieur d'un coffret.</p>
       </div>
       <ul class="finitions">
-        <li class="finition"><a href="dorure.html"><div class="loupe"><img data-n="41" alt="Carnet blanc orné d'un losange doré à chaud" loading="lazy" width="708" height="945"></div><h3>Dorure à chaud</h3><p>Un logo ou un motif qui accroche la lumière, à plat ou en dorure galbée.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir la dorure →</span></a></li>
-        <li class="finition"><a href="gaufrage.html"><div class="loupe"><img data-n="23" alt="Gaufrage de vagues sur papier blanc" loading="lazy" width="1181" height="1181"></div><h3>Gaufrage</h3><p>Un motif qui se sent sous les doigts, en relief ou en creux.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir le gaufrage →</span></a></li>
-        <li class="finition"><a href="decoupe.html"><div class="loupe"><img data-n="34" alt="Carte de vœux découpée en forme de montagnes" loading="lazy" width="1181" height="1181"></div><h3>Découpe</h3><p>Des contours nets et une forme précise.</p><span class="format"><b>64 × 90 cm</b> maximum</span><span class="decouvrir">Découvrir la découpe →</span></a></li>
-        <li class="finition"><a href="pelliculage.html"><div class="loupe"><img data-n="72" alt="Planche d'étiquettes pelliculées noires et dorées" loading="lazy" width="1311" height="1800"></div><h3>Pelliculage</h3><p>Mat, brillant ou toucher velours, pour protéger et changer la tenue en main.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir le pelliculage →</span></a></li>
-        <li class="finition"><a href="vernis-selectif.html"><div class="loupe"><img data-n="56" alt="Livret noir avec monogrammes en vernis sélectif" loading="lazy" width="1800" height="1800"></div><h3>Vernis sélectif</h3><p>Un contraste mat et brillant là où vous voulez attirer le regard.</p><span class="format"><b>72 × 102 cm</b> maximum</span><span class="decouvrir">Découvrir le vernis sélectif →</span></a></li>
+        <li class="finition"><a href="dorure.html"><div class="loupe"><img data-n="41" alt="Carnet blanc orné d'un losange doré à chaud" loading="lazy" width="708" height="945"><span class="pastille" aria-hidden="true">→</span></div><div class="carte-corps"><h3>Dorure à chaud</h3><p>Un logo ou un motif qui accroche la lumière, à plat ou en dorure galbée.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir</span></div></a></li>
+        <li class="finition"><a href="gaufrage.html"><div class="loupe"><img data-n="23" alt="Gaufrage de vagues sur papier blanc" loading="lazy" width="1181" height="1181"><span class="pastille" aria-hidden="true">→</span></div><div class="carte-corps"><h3>Gaufrage</h3><p>Un motif qui se sent sous les doigts, en relief ou en creux.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir</span></div></a></li>
+        <li class="finition"><a href="decoupe.html"><div class="loupe"><img data-n="34" alt="Carte de vœux découpée en forme de montagnes" loading="lazy" width="1181" height="1181"><span class="pastille" aria-hidden="true">→</span></div><div class="carte-corps"><h3>Découpe</h3><p>Des contours nets et une forme précise.</p><span class="format"><b>64 × 90 cm</b> maximum</span><span class="decouvrir">Découvrir</span></div></a></li>
+        <li class="finition"><a href="pelliculage.html"><div class="loupe"><img data-n="72" alt="Planche d'étiquettes pelliculées noires et dorées" loading="lazy" width="1311" height="1800"><span class="pastille" aria-hidden="true">→</span></div><div class="carte-corps"><h3>Pelliculage</h3><p>Mat, brillant ou toucher velours, pour protéger et changer la tenue en main.</p><span class="format"><b>75 × 105 cm</b> maximum</span><span class="decouvrir">Découvrir</span></div></a></li>
+        <li class="finition"><a href="vernis-selectif.html"><div class="loupe"><img data-n="56" alt="Livret noir avec monogrammes en vernis sélectif" loading="lazy" width="1800" height="1800"><span class="pastille" aria-hidden="true">→</span></div><div class="carte-corps"><h3>Vernis sélectif</h3><p>Un contraste mat et brillant là où vous voulez attirer le regard.</p><span class="format"><b>72 × 102 cm</b> maximum</span><span class="decouvrir">Découvrir</span></div></a></li>
       </ul>
-      <p class="indice">Passez la souris sur une photo pour voir la matière de près.</p>
     </div>
   </section>
 
