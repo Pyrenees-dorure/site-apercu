@@ -1,0 +1,53 @@
+/* Guide de préparation des fichiers */
+/* Guide technique : une colonne de lecture, repères numérotés car c'est une procédure. */
+:root{color-scheme:dark;--fond:#26272a;--surface:#303236;--texte:#f1efea;--doux:#b4b5b9;--filet:#44464b;--or:#e6aa00;
+  --f-titre:"Josefin Sans","Futura","Century Gothic",sans-serif;--f-texte:"Mulish","Helvetica Neue",Arial,sans-serif}
+*{box-sizing:border-box}
+body{margin:0;background:var(--fond);color:var(--texte);font-family:var(--f-texte);font-weight:300;font-size:1.05rem;line-height:1.65;-webkit-font-smoothing:antialiased}
+a{color:var(--or)}
+.cadre{max-width:860px;margin-inline:auto;padding-left:max(20px,env(safe-area-inset-left,0px));padding-right:max(20px,env(safe-area-inset-right,0px))}
+header{border-bottom:1px solid var(--filet)}
+header .cadre{display:flex;justify-content:space-between;align-items:center;gap:16px;padding-block:16px;max-width:1100px}
+header img{height:46px;width:auto;display:block}
+header nav{display:flex;gap:16px;font-size:.95rem}
+header nav a{color:var(--texte);text-decoration:none}
+.bouton{display:inline-block;background:var(--or);color:#16130f;text-decoration:none;font-weight:600;padding:11px 18px}
+h1,h2,h3{font-family:var(--f-titre);font-weight:300;line-height:1.15;margin:0;text-wrap:balance}
+h1{font-size:clamp(2.2rem,5vw,3.6rem);margin-top:56px}
+.chapo{font-size:1.18rem;color:var(--doux);margin:18px 0 0;max-width:60ch}
+.resume{margin-top:32px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.resume div{background:var(--surface);padding:16px}
+.resume strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.4rem;color:var(--or)}
+.resume span{font-size:.92rem;color:var(--doux)}
+ol.regles{list-style:none;counter-reset:r;margin:48px 0 0;padding:0}
+ol.regles > li{counter-increment:r;border-top:1px solid var(--filet);padding:32px 0 32px 64px;position:relative}
+ol.regles > li::before{content:counter(r);position:absolute;left:0;top:28px;font-family:var(--f-titre);font-size:2.4rem;color:var(--or);line-height:1}
+ol.regles h2{font-size:1.7rem}
+ol.regles p{margin:12px 0 0;max-width:62ch}
+ol.regles ul{margin:12px 0 0;padding-left:1.1em}
+ol.regles li li{margin-top:6px}
+table{width:100%;border-collapse:collapse;margin-top:14px;font-size:.98rem}
+th,td{text-align:left;padding:10px 8px;border-bottom:1px solid var(--filet)}
+th{font-weight:600;color:var(--doux);font-size:.88rem}
+td{font-variant-numeric:tabular-nums}
+.tableau{overflow-x:auto}
+.coche{margin-top:24px;background:var(--surface);padding:24px 28px}
+.coche h2{font-size:1.6rem}
+.coche ul{list-style:none;padding:0;margin:14px 0 0;display:grid;gap:8px}
+.coche li{padding-left:30px;position:relative}
+.coche li::before{content:"";position:absolute;left:0;top:.35em;width:16px;height:16px;border:2px solid var(--or)}
+.fin{margin:48px 0 64px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+.fin p{margin:0;color:var(--doux);flex-basis:100%}
+footer{border-top:1px solid var(--filet);font-size:.9rem;color:var(--doux)}
+footer .cadre{padding-block:24px;max-width:1100px}
+@media (max-width:640px){.resume{grid-template-columns:1fr}ol.regles > li{padding-left:48px}header nav a:not(.bouton){display:none}}
+/* Impression et PDF : fond blanc, encre noire */
+@media print{
+  :root{--fond:#fff;--surface:#f4f1ea;--texte:#1a1a1a;--doux:#555;--filet:#d6d2c8;--or:#9a6b00;color-scheme:light}
+  header nav,.fin .bouton{display:none}
+  h1{margin-top:20px}
+  ol.regles > li{break-inside:avoid;padding-block:20px}
+  .coche{break-inside:avoid}
+  body{font-size:10.5pt}
+  @page{margin:16mm 14mm}
+}

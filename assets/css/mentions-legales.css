@@ -1,0 +1,86 @@
+/* Styles propres à la page mentions-legales */
+.relief{border-top:1px solid var(--filet)}
+.relief .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.relief h2{font-size:clamp(2rem,3.6vw,3rem)}
+.relief .intro p{margin-top:18px;color:var(--doux);max-width:30em}
+.reglage{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.reglage button{font:inherit;font-size:.95rem;padding:9px 16px;border:1px solid var(--filet);background:transparent;color:var(--texte);cursor:pointer;transition:border-color .2s,background .2s}
+.reglage button:hover{border-color:var(--or)}
+.reglage button[aria-pressed="true"]{background:var(--or);border-color:var(--or);color:#16130f}
+.reglage button:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.scene-relief{position:relative;aspect-ratio:16/10;overflow:hidden;touch-action:pan-y}
+.scene-relief svg{display:block;width:100%;height:100%}
+.scene-relief .aide{position:absolute;left:18px;bottom:14px;font-size:.9rem;color:#9a9ba0;pointer-events:none;transition:opacity .4s}
+.scene-relief.noir .aide{color:#8a8b90}
+@media (max-width:760px){
+  .relief .cadre{grid-template-columns:1fr;gap:24px}
+  .scene-relief .aide{display:none}
+}
+.parcours{border-top:1px solid var(--filet)}
+.parcours .tete{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:end;margin-bottom:56px}
+.parcours h2,.trouver h2{font-size:clamp(2rem,3.6vw,3rem)}
+.parcours .tete p{color:var(--doux)}
+.piste-p{position:relative;padding-top:8px}
+.piste-p .ligne,.piste-p .ligne-or{position:absolute;top:31px;left:12.5%;right:12.5%;height:2px;background:var(--filet)}
+.piste-p .ligne-or{background:var(--or);transform-origin:0 50%;transform:scaleX(0)}
+.etapes4{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;position:relative}
+.etapes4 li{text-align:center;padding:0 10px}
+.etapes4 .pt{display:grid;place-items:center;width:48px;height:48px;margin:0 auto 18px;border-radius:50%;border:2px solid var(--filet);background:var(--fond);font-family:var(--f-titre);font-size:1.15rem;color:var(--doux);transition:background .4s,border-color .4s,color .4s}
+.etapes4 li.fait .pt{background:var(--or);border-color:var(--or);color:#16130f}
+.etapes4 h3{font-size:1.35rem;opacity:.55;transition:opacity .4s}
+.etapes4 p{margin-top:8px;color:var(--doux);opacity:.55;transition:opacity .4s}
+.etapes4 li.fait h3,.etapes4 li.fait p{opacity:1}
+.feuille-p{position:absolute;top:6px;left:0;width:38px;height:50px;margin-left:-19px;background:#efe7d6;box-shadow:0 8px 18px rgba(0,0,0,.45);z-index:2;pointer-events:none;overflow:hidden}
+.feuille-p::after{content:"";position:absolute;inset:9px 8px;border:2px solid var(--or);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);opacity:var(--dore,0);background:linear-gradient(120deg,#9a6c00,#ffe39a 45%,#e6aa00 60%,#8f6400)}
+.parcours .bas{display:flex;flex-wrap:wrap;gap:28px;align-items:center;justify-content:space-between;margin-top:48px}
+.parcours .atouts{display:flex;flex-wrap:wrap;gap:32px}
+.parcours .atouts div{border-top:2px solid var(--or);padding-top:10px}
+.parcours .atouts strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.3rem}
+.parcours .atouts span{color:var(--doux);font-size:.92rem}
+.trouver .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:stretch}
+.trouver dl{margin:24px 0 0;display:grid;grid-template-columns:minmax(0,.8fr) minmax(0,1.6fr)}
+.trouver dt,.trouver dd{margin:0;padding:15px 0;border-bottom:1px solid var(--filet)}
+.trouver dt{color:var(--doux)}
+.trouver dd a{color:var(--texte)}
+.trouver .actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:26px}
+.trouver .groupe{margin-top:18px;color:var(--doux);font-size:.95rem}
+.carte{position:relative;min-height:420px;background:#1b1c1f;overflow:hidden;border:1px solid var(--filet)}
+.carte iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(1) invert(.9) sepia(.25) contrast(1.05) brightness(.85)}
+.carte::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 0 1px rgba(230,170,0,.25),inset 0 0 80px rgba(0,0,0,.55)}
+.carte .etiquette-c{position:absolute;left:18px;bottom:18px;z-index:2;background:rgba(26,27,30,.92);border-left:3px solid var(--or);padding:14px 18px;max-width:300px}
+.carte .etiquette-c strong{display:block;font-family:var(--f-titre);font-weight:400;font-size:1.15rem}
+.carte .etiquette-c span{display:block;color:var(--doux);font-size:.9rem;margin-top:4px}
+.carte .etiquette-c a{display:inline-block;margin-top:8px;color:var(--or);font-size:.9rem;text-decoration:none}
+.carte .repli{position:absolute;inset:0;display:flex;flex-direction:column;gap:14px;align-items:center;justify-content:center;color:var(--doux);font-size:.85rem;text-align:center;padding:24px 24px 90px}
+.carte .plan-deco{position:absolute;inset:0;width:100%;height:100%}
+.carte .repli .bouton,.carte .repli .avert{position:relative}
+.carte .repli .avert{max-width:280px}
+@media (max-width:760px){
+  .parcours .tete,.trouver .cadre{grid-template-columns:1fr;gap:24px}
+  .piste-p .ligne,.piste-p .ligne-or{top:24px;bottom:24px;left:23px;right:auto;width:2px;height:auto}
+  .piste-p .ligne-or{transform-origin:50% 0;transform:scaleY(0)}
+  .etapes4{grid-template-columns:1fr;gap:30px}
+  .etapes4 li{text-align:left;display:grid;grid-template-columns:48px 1fr;column-gap:18px;padding:0}
+  .etapes4 .pt{margin:0;grid-row:span 2}
+  .feuille-p{left:24px !important;width:30px;height:40px;margin-left:-15px}
+  .carte{min-height:320px}
+  .trouver dl{grid-template-columns:1fr}
+  .trouver dt{padding-bottom:2px;border:0}
+  .trouver dd{padding-top:0}
+}
+.legal{padding-top:8px}
+.legal .cadre{max-width:860px}
+.legal h1{font-size:clamp(2.4rem,5vw,3.6rem)}
+.legal .maj{margin-top:10px;color:var(--doux);font-size:.95rem}
+.legal h2{font-size:1.5rem;margin:44px 0 12px;padding-top:22px;border-top:1px solid var(--filet)}
+.legal p,.legal li{color:#d9dadd;line-height:1.7}
+.legal p+p{margin-top:10px}
+.legal ul{margin:10px 0 0;padding-left:20px}
+.legal a:not(.bouton){color:var(--or)}
+.legal dl{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,2fr);margin:8px 0 0}
+.legal dt,.legal dd{margin:0;padding:10px 0;border-bottom:1px solid var(--filet)}
+.legal dt{color:var(--doux)}
+@media (max-width:760px){
+  .legal dl{grid-template-columns:1fr}
+  .legal dt{border:0;padding-bottom:0}
+}

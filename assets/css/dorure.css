@@ -1,0 +1,24 @@
+/* Styles propres à la page dorure */
+@media (max-width:760px){
+  .nuancier .intro{display:contents}
+  .nuancier .intro h2{order:1}
+  .nuancier .intro > p:not(.groupe-t):not(.indice){order:2;margin-top:0}
+  .nuancier .apercu{order:3;aspect-ratio:16/9}
+  .nuancier .groupe-t,.nuancier .teintes,.nuancier .indice{order:4}
+  .nuancier .cadre{gap:14px}
+  .teintes{gap:8px;margin-top:10px}
+  .teintes button{width:38px;height:38px}
+  .groupe-t{margin-top:12px}
+  .relief-motif{width:min(42%,200px)}
+}
+.cadre .intro p.consigne{margin-top:22px;display:inline-flex;align-items:flex-start;gap:10px;padding:10px 16px;border:1px solid var(--or);color:var(--or);font-weight:600;font-size:.95rem;line-height:1.45;max-width:30em}
+.consigne .fleche{flex:none}
+.consigne .doigt{display:none}
+@media (hover:none){
+  .consigne .souris{display:none}
+  .consigne .doigt{display:inline}
+}
+.teintes button[aria-pressed="true"]{outline:2px solid var(--or);outline-offset:3px}
+@media (max-width:760px){
+  .nuancier .intro > p.consigne{order:4!important;margin-top:4px!important;margin-bottom:6px}
+}

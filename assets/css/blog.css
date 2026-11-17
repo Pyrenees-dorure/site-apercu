@@ -1,0 +1,39 @@
+/* Styles du blog */
+.blog-liste h1{font-size:clamp(2.4rem,5vw,3.6rem)}
+.b-intro{margin-top:14px;color:var(--doux);max-width:40em}
+.b-grille{list-style:none;margin:44px 0 0;padding:0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px 24px}
+.b-grille a{display:flex;flex-direction:column;text-decoration:none;color:var(--texte)}
+.b-img{aspect-ratio:3/2;overflow:hidden;background:var(--surface)}
+.b-img img{width:100%;height:100%;object-fit:cover;transition:transform .8s}
+.b-grille a:hover .b-img img{transform:scale(1.05)}
+.b-vide{background:linear-gradient(135deg,#303236,#3a3326)}
+.b-date{margin:14px 0 0;color:var(--or);font-size:.85rem;letter-spacing:.06em;text-transform:uppercase}
+.b-grille h2{font-size:1.45rem;margin:8px 0 0;line-height:1.2}
+.b-grille a:hover h2{color:var(--or)}
+.b-chapo{margin:10px 0 0;color:var(--doux);font-size:.98rem}
+.b-lire{margin-top:12px;font-size:.85rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--or)}
+.b-rien{grid-column:1/-1;color:var(--doux);border:1px solid var(--filet);padding:28px}
+.article{padding-top:16px}
+.cadre.etroit{max-width:780px}
+.article h1{font-size:clamp(2.2rem,4.6vw,3.4rem);margin-top:10px;line-height:1.1}
+.a-chapo-b{margin-top:18px;font-size:1.2rem;color:#d9dadd;line-height:1.6}
+.a-une{margin:40px auto 0}.a-une img{width:100%;height:auto;max-height:640px;object-fit:cover;display:block}
+.a-texte{margin-top:36px;font-size:1.08rem;line-height:1.8;color:#e4e3df}
+.a-texte p{margin:0 0 1.1em}
+.a-texte h2{font-size:1.8rem;margin:1.6em 0 .5em}
+.a-texte h3{font-size:1.35rem;margin:1.4em 0 .4em;font-weight:600}
+.a-texte a{color:var(--or)}
+.a-texte ul,.a-texte ol{margin:0 0 1.1em;padding-left:22px}.a-texte li{margin:.3em 0}
+.a-texte blockquote{margin:1.4em 0;padding:4px 0 4px 22px;border-left:3px solid var(--or);font-size:1.2rem;font-style:italic;color:var(--texte)}
+.a-texte figure{margin:1.6em 0}.a-texte img{max-width:100%;height:auto;display:block}
+.a-texte figcaption{margin-top:8px;font-size:.9rem;color:var(--doux)}
+.b-autres h2{font-size:1.6rem}
+.b-autres ul{list-style:none;margin:18px 0 0;padding:0;border-top:1px solid var(--filet)}
+.b-autres a{display:block;padding:14px 0;border-bottom:1px solid var(--filet);color:var(--texte);text-decoration:none;font-size:1.15rem}
+.b-autres a:hover{color:var(--or)}.b-autres .b-date{display:block;margin:0 0 4px}
+@media (max-width:1000px){.b-grille{grid-template-columns:1fr 1fr}}
+@media (max-width:640px){.b-grille{grid-template-columns:1fr}}
+
+/* Bandeau de l'aperçu (espace d'écriture) */
+.apercu-bandeau{position:sticky;top:0;z-index:60;background:#e6aa00;color:#16130f;padding:10px 20px;font-size:.95rem}.apercu-bandeau a{color:#16130f}
+.retour-blog{margin-top:24px}

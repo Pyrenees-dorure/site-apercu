@@ -1,0 +1,25 @@
+/* Styles propres à la page gaufrage */
+.relief{border-top:1px solid var(--filet)}
+.relief .cadre{display:grid;grid-template-columns:5fr 7fr;gap:56px;align-items:center}
+.relief h2{font-size:clamp(2rem,3.6vw,3rem)}
+.relief .intro p{margin-top:18px;color:var(--doux);max-width:30em}
+.reglage{display:flex;flex-wrap:wrap;gap:8px;margin-top:12px}
+.reglage button{font:inherit;font-size:.95rem;padding:9px 16px;border:1px solid var(--filet);background:transparent;color:var(--texte);cursor:pointer;transition:border-color .2s,background .2s}
+.reglage button:hover{border-color:var(--or)}
+.reglage button[aria-pressed="true"]{background:var(--or);border-color:var(--or);color:#16130f}
+.reglage button:focus-visible{outline:2px solid var(--or);outline-offset:3px}
+.scene-relief{position:relative;aspect-ratio:16/10;overflow:hidden;touch-action:pan-y}
+.scene-relief svg{display:block;width:100%;height:100%}
+.scene-relief .aide{position:absolute;left:18px;bottom:14px;font-size:.9rem;color:#9a9ba0;pointer-events:none;transition:opacity .4s}
+.scene-relief.noir .aide{color:#8a8b90}
+@media (max-width:760px){
+  .relief .cadre{grid-template-columns:1fr;gap:24px}
+  .scene-relief .aide{display:none}
+}
+.cadre .intro p.consigne{margin-top:22px;display:inline-flex;align-items:flex-start;gap:10px;padding:10px 16px;border:1px solid var(--or);color:var(--or);font-weight:600;font-size:.95rem;line-height:1.45;max-width:30em}
+.consigne .fleche{flex:none}
+.consigne .doigt{display:none}
+@media (hover:none){
+  .consigne .souris{display:none}
+  .consigne .doigt{display:inline}
+}
